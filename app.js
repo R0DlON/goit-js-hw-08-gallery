@@ -63,11 +63,14 @@ const galleryItems = [
     description: "Lighthouse Coast Sea",
   },
 ];
+// Создание и рендер разметки по массиву данных galleryItems из app.js и предоставленному шаблону
+const placeForItems = document.querySelector(".js-gallery");
+const galleryMarkup = createGalleryItems(galleryItems);
 
 function createGalleryItems(event) {
-  event
+  return event
     .map(({ preview, original, description }) => {
-      `<li class="gallery__item">
+      return `<li class="gallery__item">
   <a
     class="gallery__link"
     href="${original}"
@@ -82,4 +85,23 @@ function createGalleryItems(event) {
 </li>`;
     })
     .join("");
+}
+console.log(createGalleryItems(galleryItems));
+
+placeForItems.insertAdjacentHTML("afterbegin", galleryMarkup);
+
+// Rеализация делегирования на галерее ul.js-gallery и получение url большого изображения.
+// +
+// Открытие модального окна по клику на элементе галереи
+
+placeForItems.addEventListener("click", addClass);
+
+function addClass(event) {
+  event.preventDefault();
+  const modal = document.querySelector(".lightbox");
+  if (modal.classList.contains("lightbox")) {
+    modal.classList.remove("lightbox");
+  }
+
+  modal.classList.toggle("lightbox.is-open");
 }
