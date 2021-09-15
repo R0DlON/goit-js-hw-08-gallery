@@ -86,7 +86,7 @@ function createGalleryItems(event) {
     })
     .join("");
 }
-console.log(createGalleryItems(galleryItems));
+// console.log(createGalleryItems(galleryItems));
 
 placeForItems.insertAdjacentHTML("afterbegin", galleryMarkup);
 
@@ -104,10 +104,35 @@ function addClass(event) {
   if (modal.classList.contains("lightbox")) {
     modal.classList.remove("lightbox");
   }
-
   modal.classList.add("lightbox.is-open");
-}
 
+  takeUrlOfTarget(event);
+  takeAltOfTarget(event);
+
+  getUrl(event);
+  getAlt(event);
+}
+function takeUrlOfTarget(event) {
+  let urlOftarget = event.target.dataset.source;
+  console.log(urlOftarget);
+  return urlOftarget;
+}
+function takeAltOfTarget(event) {
+  let altOftarget = event.target.alt;
+  console.log(altOftarget);
+  return altOftarget;
+}
+// Подмена значения атрибута src элемента img.lightbox__image.
+const placeForReplace = document.querySelector(".lightbox__image");
+
+function getUrl(event) {
+  placeForReplace.src = takeUrlOfTarget(event);
+  console.log(placeForReplace);
+}
+function getAlt(event) {
+  placeForReplace.alt = takeAltOfTarget(event);
+  console.log(placeForReplace);
+}
 // Закрытие модального окна по клику на кнопку button[data-action="close-lightbox"].
 const closeButton = document.querySelector(
   'button[data-action="close-lightbox"]'
