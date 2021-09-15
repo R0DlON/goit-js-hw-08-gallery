@@ -96,12 +96,28 @@ placeForItems.insertAdjacentHTML("afterbegin", galleryMarkup);
 
 placeForItems.addEventListener("click", addClass);
 
+const modal = document.querySelector(".js-lightbox");
+
 function addClass(event) {
   event.preventDefault();
-  const modal = document.querySelector(".lightbox");
+
   if (modal.classList.contains("lightbox")) {
     modal.classList.remove("lightbox");
   }
 
-  modal.classList.toggle("lightbox.is-open");
+  modal.classList.add("lightbox.is-open");
+}
+
+// Закрытие модального окна по клику на кнопку button[data-action="close-lightbox"].
+const closeButton = document.querySelector(
+  'button[data-action="close-lightbox"]'
+);
+closeButton.addEventListener("click", closeModal);
+console.log(closeButton);
+
+function closeModal(event) {
+  if (modal.classList.contains("lightbox.is-open")) {
+    modal.classList.remove("lightbox.is-open");
+  }
+  modal.classList.add("lightbox");
 }
