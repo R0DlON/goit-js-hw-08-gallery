@@ -86,14 +86,12 @@ function createGalleryItems(event) {
     })
     .join("");
 }
-// console.log(createGalleryItems(galleryItems));
 
 placeForItems.insertAdjacentHTML("afterbegin", galleryMarkup);
 
 // Rеализация делегирования на галерее ul.js-gallery и получение url большого изображения.
 // +
 // Открытие модального окна по клику на элементе галереи
-
 placeForItems.addEventListener("click", addClass);
 
 const modal = document.querySelector(".js-lightbox");
@@ -122,6 +120,7 @@ function takeAltOfTarget(event) {
   console.log(altOftarget);
   return altOftarget;
 }
+
 // Подмена значения атрибута src элемента img.lightbox__image.
 const placeForReplace = document.querySelector(".lightbox__image");
 
@@ -133,10 +132,12 @@ function getAlt(event) {
   placeForReplace.alt = takeAltOfTarget(event);
   console.log(placeForReplace);
 }
+
 // Закрытие модального окна по клику на кнопку button[data-action="close-lightbox"].
 const closeButton = document.querySelector(
   'button[data-action="close-lightbox"]'
 );
+
 closeButton.addEventListener("click", closeModal);
 console.log(closeButton);
 
