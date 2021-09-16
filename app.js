@@ -100,10 +100,9 @@ function addClass(event) {
   event.preventDefault();
 
   if (modal.classList.contains("lightbox")) {
-    modal.classList.remove("lightbox");
+    modal.classList.add("is-open");
+    // modal.classList.remove("lightbox");
   }
-  modal.classList.add("lightbox.is-open");
-
   takeUrlOfTarget(event);
   takeAltOfTarget(event);
 
@@ -142,8 +141,7 @@ closeButton.addEventListener("click", closeModal);
 console.log(closeButton);
 
 function closeModal(event) {
-  if (modal.classList.contains("lightbox.is-open")) {
-    modal.classList.remove("lightbox.is-open");
+  if (modal.classList.contains("is-open")) {
+    modal.classList.remove("is-open");
   }
-  modal.classList.add("lightbox");
 }
