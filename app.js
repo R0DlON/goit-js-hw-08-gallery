@@ -144,4 +144,6 @@ function closeModal(event) {
   if (modal.classList.contains("is-open")) {
     modal.classList.remove("is-open");
   }
+  placeForReplace.src = "";
+  placeForReplace.alt = "";
 }
