@@ -92,11 +92,11 @@ placeForItems.insertAdjacentHTML("afterbegin", galleryMarkup);
 // Rеализация делегирования на галерее ul.js-gallery и получение url большого изображения.
 // +
 // Открытие модального окна по клику на элементе галереи
-placeForItems.addEventListener("click", addClass);
+placeForItems.addEventListener("click", addClassToModal);
 
 const modal = document.querySelector(".js-lightbox");
 
-function addClass(event) {
+function addClassToModal(event) {
   event.preventDefault();
 
   if (modal.classList.contains("lightbox")) {
@@ -125,11 +125,11 @@ const placeForReplace = document.querySelector(".lightbox__image");
 
 function getUrl(event) {
   placeForReplace.src = takeUrlOfTarget(event);
-  console.log(placeForReplace);
+  // console.log(placeForReplace);
 }
 function getAlt(event) {
   placeForReplace.alt = takeAltOfTarget(event);
-  console.log(placeForReplace);
+  // console.log(placeForReplace);
 }
 
 // Закрытие модального окна по клику на кнопку button[data-action="close-lightbox"].
@@ -178,9 +178,9 @@ function closeModalOnBackground(event) {
 
 function closeModalOnKey(event) {
   console.log(event.key);
-  if (event.key === escape) {
+  if (event.code === "Escape") {
+    removeClassOfModal();
+    cleaningSrc();
+    cleaningAlt();
   }
-  removeClassOfModal();
-  cleaningSrc();
-  cleaningAlt();
 }
