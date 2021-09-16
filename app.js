@@ -101,8 +101,8 @@ function addClass(event) {
 
   if (modal.classList.contains("lightbox")) {
     modal.classList.add("is-open");
-    // modal.classList.remove("lightbox");
   }
+  window.addEventListener("keydown", closeModalOnKey);
   takeUrlOfTarget(event);
   takeAltOfTarget(event);
 
@@ -137,13 +137,50 @@ const closeButton = document.querySelector(
   'button[data-action="close-lightbox"]'
 );
 
-closeButton.addEventListener("click", closeModal);
+closeButton.addEventListener("click", closeModalOnButton);
 console.log(closeButton);
 
-function closeModal(event) {
+function closeModalOnButton(event) {
   if (modal.classList.contains("is-open")) {
-    modal.classList.remove("is-open");
+    removeClassOfModal();
   }
+  cleaningSrc();
+  cleaningAlt();
+}
+
+function removeClassOfModal() {
+  window.removeEventListener("keydown", closeModalOnKey);
+  modal.classList.remove("is-open");
+}
+// Очистка значения атрибута src элемента img.lightbox__image. Это необходимо для того, чтобы при следующем открытии модального окна, пока грузится изображение, мы не видели предыдущее.
+function cleaningSrc() {
   placeForReplace.src = "";
+}
+function cleaningAlt() {
   placeForReplace.alt = "";
+}
+// Закрытие модального окна по клику на div.lightbox__overlay.
+
+const overlay = document.querySelector(".lightbox__overlay");
+
+overlay.addEventListener("click", closeModalOnBackground);
+
+function closeModalOnBackground(event) {
+  if (overlay) {
+    removeClassOfModal();
+  }
+  cleaningSrc();
+  cleaningAlt();
+}
+
+// Закрытие модального окна по нажатию клавиши ESC.
+// window.addEventListener("keydown", closeModalOnKey);
+
+function closeModalOnKey(event) {
+  console.log(event.key);
+  if (event.key === escape) {
+  }
+  removeClassOfModal();
+  cleaningSrc();
+  cleaningAlt();
 }
